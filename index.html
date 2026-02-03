@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿Quieres Salir Conmigo?</title>
+    <link rel="stylesheet" href="index.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>erick es bonito?</h1>
+
+      <div class="image-container">
+        <video controls width="300" height="300">
+          <source
+            src="valeria.mp4"
+            type="video/mp4"
+          />
+          Tu navegador no soporta videos.
+        </video>
+      </div>
+
+      <div class="buttons-container">
+        <button id="btnSi">Sí</button>
+        <button id="btnNo">No</button>
+      </div>
+    </div>
+
+    <div class="message" id="message">
+     ya sabia hey je
+    </div>
+
+    <div class="message" id="knowMessage"></div>
+
+    <script>
+      const btnNo = document.getElementById("btnNo");
+      const btnSi = document.getElementById("btnSi");
+      const message = document.getElementById("message");
+      const knowMessage = document.getElementById("knowMessage");
+      const container = document.querySelector(".container");
+      let siSize = 18;
+      let siWidth = 100;
+      let siHeight = 50;
+      let clickCount = 0;
+
+      btnNo.addEventListener("click", function () {
+        // Aumentar tamaño del botón Sí
+        clickCount++;
+        siSize += 8;
+        siWidth += 80;
+        siHeight += 40;
+
+        btnSi.style.fontSize = siSize + "px";
+        btnSi.style.width = siWidth + "px";
+        btnSi.style.height = siHeight + "px";
+        btnSi.style.padding = "0";
+        btnSi.style.display = "flex";
+        btnSi.style.alignItems = "center";
+        btnSi.style.justifyContent = "center";
+
+        // Agregar clase cuando comienza a crecer
+        if (clickCount === 1) {
+          btnSi.classList.add("growing");
+        }
+
+        // Hacer que el botón tape la pantalla gradualmente
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        if (siWidth >= screenWidth * 0.8 || siHeight >= screenHeight * 0.8) {
+          // Cuando el botón es lo suficientemente grande, ocultamos el contenedor
+          container.style.display = "none";
+        }
+      });
+
+      btnSi.addEventListener("click", function () {
+        // Mostrar mensaje de felicidad
+        message.classList.add("show");
+        knowMessage.classList.add("show");
+        container.style.display = "none";
+        btnSi.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
