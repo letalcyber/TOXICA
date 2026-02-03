@@ -119,3 +119,73 @@ h1 {
   margin-bottom: 20px;
   font-size: 28px;
 }
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    width: 90%;
+    max-width: 100%;
+  }
+
+  .image-container video {
+    width: 200px;
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  #btnNo {
+    padding: 10px 20px;
+  }
+
+  #btnSi {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  .image-container video {
+    width: 150px;
+    height: 150px;
+  }
+
+  h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .buttons-container {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  #btnNo {
+    padding: 8px 15px;
+  }
+
+  #btnSi {
+    padding: 8px 15px;
+  }
+
+  .message {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+}
