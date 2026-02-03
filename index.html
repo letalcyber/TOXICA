@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>¿Quieres Salir Conmigo?</title>
-    <link rel="stylesheet" href="index.css">
-
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <div class="container">
@@ -13,10 +12,7 @@
 
       <div class="image-container">
         <video controls width="300" height="300">
-          <source
-            src="valeria.mp4"
-            type="video/mp4"
-          />
+          <source src="valeria.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
       </div>
@@ -27,9 +23,7 @@
       </div>
     </div>
 
-    <div class="message" id="message">
-     ya sabia hey je
-    </div>
+    <div class="message" id="message">ya sabia hey je</div>
 
     <div class="message" id="knowMessage"></div>
 
@@ -39,17 +33,29 @@
       const message = document.getElementById("message");
       const knowMessage = document.getElementById("knowMessage");
       const container = document.querySelector(".container");
-      let siSize = 18;
-      let siWidth = 100;
-      let siHeight = 50;
+
+      // Ajustar tamaños iniciales según el dispositivo
+      const isMobile = window.innerWidth <= 768;
+      let siSize = isMobile ? 12 : 18;
+      let siWidth = isMobile ? 80 : 100;
+      let siHeight = isMobile ? 35 : 50;
       let clickCount = 0;
+      const MAX_CLICKS = 8; // Limitar el crecimiento a 8 clicks
 
       btnNo.addEventListener("click", function () {
+        // Solo crecer hasta el máximo de clicks
+        if (clickCount >= MAX_CLICKS) {
+          return;
+        }
+
         // Aumentar tamaño del botón Sí
         clickCount++;
-        siSize += 8;
-        siWidth += 80;
-        siHeight += 40;
+        const increment = isMobile ? 5 : 8;
+        const heightIncrement = isMobile ? 25 : 40;
+
+        siSize += increment;
+        siWidth += increment * 10;
+        siHeight += heightIncrement;
 
         btnSi.style.fontSize = siSize + "px";
         btnSi.style.width = siWidth + "px";
@@ -62,15 +68,6 @@
         // Agregar clase cuando comienza a crecer
         if (clickCount === 1) {
           btnSi.classList.add("growing");
-        }
-
-        // Hacer que el botón tape la pantalla gradualmente
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-
-        if (siWidth >= screenWidth * 0.8 || siHeight >= screenHeight * 0.8) {
-          // Cuando el botón es lo suficientemente grande, ocultamos el contenedor
-          container.style.display = "none";
         }
       });
 
